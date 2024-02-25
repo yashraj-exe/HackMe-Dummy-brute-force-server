@@ -6,7 +6,7 @@ const api_response = require("../api_response/responses")
 class Controller {
 
     static registerUser = async (req, res) => {
-        const { name, email, phone } = req.body;
+        const { name, email, phone, section, roll_number } = req.body;
         const userData = await userModel.findOne({ email: email });
 
         if (userData) {
@@ -15,12 +15,15 @@ class Controller {
             if (name && email && phone) {
                 try {
 
-                    let randomPassword = Math.floor(Math.random() * 900) + 100;
+                    let randomPassword = Math.floor(Math.random() * (999 - 100 + 1)) + 100; // for 3 digits random numbers (p) = 900
+                    // let randomPassword = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000; // for 4 digits random numbers (p) = 9000
                     const newUser = new userModel({
                         name,
                         email,
                         contact: phone,
-                        password: randomPassword.toString()
+                        section,
+                        rollNumber : roll_number,
+                        password: randomPassword
                     })
                     await newUser.save();
 
