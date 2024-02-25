@@ -1,0 +1,116 @@
+<canvas id="bg" #bg style="position: fixed; top: 0; left: 0;"> </canvas>
+<div class="box">
+  <img src="../assets/Image/login-935679.png">
+  <div class="page">
+    <div class="header">
+      <a id="login" [ngClass]="(!isSinupForm) ? 'active' : ''" (click)="isLogin()">login</a>
+      <a id="signup" [ngClass]="(isSinupForm) ? 'active' : ''" (click)="isSignup()">signup</a>
+    </div>
+    <div id="errorMsg"></div>
+    <div class="content">
+      <form class="login" *ngIf="!isSinupForm" [formGroup]="login">
+        <div class="glitch-wrapper">
+          <h1 class="glitch" data-glitch="Hack me if you can...!">Hack me if you can...!</h1>
+        </div>
+        <div>
+          <input type="email" required formControlName="email" name="email" id="logEmail" placeholder="Email ID">
+          <div class="errorMsg"
+            *ngIf="loginControls?.email?.invalid && (!loginControls?.email?.dirty || loginControls?.email?.touched)">
+            <span *ngIf="loginControls?.email?.errors['required']">
+              This field is required.
+            </span>
+          </div>
+          <div class="errorMsg"
+            *ngIf="loginControls?.email?.invalid && !loginControls?.email?.errors['required'] &&  loginControls?.email?.errors?.pattern">
+            Please enter valid last Name (Only for 25 letter).
+          </div>
+        </div>
+        <div>
+          <input type="password" formControlName="password" required name="password" id="logPassword"
+            placeholder="Password">
+          <div class="errorMsg"
+            *ngIf="loginControls?.password?.invalid && (!loginControls?.password?.dirty || loginControls?.password?.touched)">
+            <span *ngIf="loginControls?.password?.errors['required']">
+              This field is required.
+            </span>
+          </div>
+        </div>
+        <!-- <div id="check">
+                  <input type="checkbox" id="remember">
+                  <label for="remember">Remember me</label>
+              </div> -->
+        <br>
+        <br>
+        <div>
+          <input type="submit" value="Login" [disabled]=!login?.valid (click)="validateLoginForm(login?.value)">
+        </div>
+      </form>
+      <form class="signup" *ngIf="isSinupForm" [formGroup]="sinup">
+        <div>
+          <input type="text" formControlName="userName" required name="userName" id="signName" placeholder="Name">
+          <div class="errorMsg"
+            *ngIf="sinupControls.userName.invalid && (!sinupControls.userName.dirty || sinupControls.userName.touched)">
+            <span *ngIf="sinupControls.userName.errors['required']">
+              This field is required.
+            </span>
+          </div>
+          <div class="errorMsg"
+            *ngIf="sinupControls.userName.invalid && !sinupControls.userName.errors['required'] &&  sinupControls?.userName?.errors?.pattern">
+            Please enter valid last Name (Only for 25 letter).
+          </div>
+        </div>
+        <div>
+          <input type="email" formControlName="email" required name="email" id="signEmail" placeholder="Email ID">
+          <div class="errorMsg"
+            *ngIf="sinupControls?.email?.invalid && (!sinupControls?.email?.dirty || sinupControls?.email?.touched)">
+            <span *ngIf="sinupControls?.email?.errors['required']">
+              This field is required.
+            </span>
+          </div>
+          <div class="errorMsg"
+            *ngIf="sinupControls?.email?.invalid && !sinupControls?.email?.errors['required'] && sinupControls?.email?.errors?.pattern">
+            Please enter valid email.
+          </div>
+        </div>
+        <div>
+          <input type="number" class="number-input" required name="phone" formControlName="phone" id="signPhone"
+            placeholder="Phone Number">
+          <div class="errorMsg"
+            *ngIf="sinupControls?.phone?.invalid && (!sinupControls?.phone?.dirty || sinupControls?.phone?.touched)">
+            <span *ngIf="sinupControls?.phone?.errors['required']">
+              This field is required.
+            </span>
+          </div>
+          <div class="errorMsg"
+            *ngIf="sinupControls?.phone?.invalid && !sinupControls?.phone?.errors['required'] && sinupControls?.phone?.errors?.pattern">
+            Please enter valid number.
+          </div>
+        </div>
+        <div>
+          <input type="text" formControlName="section" required name="section" id="signSection" placeholder="Section">
+          <div class="errorMsg"
+            *ngIf="sinupControls?.section?.invalid && (!sinupControls?.section?.dirty || sinupControls?.section?.touched)">
+            <span *ngIf="sinupControls?.section?.errors['required']">
+              This field is required.
+            </span>
+          </div>
+        </div>
+        <div>
+          <input type="text" formControlName="rollno" required name="rollno" id="signRoll" placeholder="Roll Number">
+          <div class="errorMsg"
+            *ngIf="sinupControls?.rollno?.invalid && (!sinupControls?.rollno?.dirty || sinupControls?.rollno?.touched)">
+            <span *ngIf="sinupControls?.rollno?.errors['required']">
+              This field is required.
+            </span>
+          </div>
+        </div>
+        <div>
+          <input type="submit" [disabled]=!sinup?.valid (click)="validateSignupForm(sinup?.value)" value="SignUp">
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- <script src="../assets/JS/Index.js"></script> -->
