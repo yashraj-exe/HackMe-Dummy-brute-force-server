@@ -49,6 +49,7 @@ class Controller {
                 if (email && password) {
                     if (userData.password == password) {
                         const token = jwt.sign({ userID: userData._id }, CONFIG.JWT_KEY, { expiresIn: '1d' });
+                        await userModel.updateOne({ email: userData.email }, { $inc: { hitCount: 1 } })
                         api_response.successResponseWithToken(res, "Successfully Login", 200, token);
                     } else {
                         await userModel.updateOne({ email: userData.email }, { $inc: { hitCount: 1 } })
