@@ -246,11 +246,12 @@ input[type=checkbox] {
 }
 
 #snackbar.error {
-    background-color: #ffae00;
+    background-color: #ff2600;
+    color: white;
 }
 
 #snackbar.success {
-    background-color: #00ff15;
+    background-color: #26ff00cc;
 }
 
 #snackbar.show {
@@ -316,8 +317,10 @@ input[type=checkbox] {
     &--svg {
         position: relative;
         height: 42px;
-        width: 190px;
+        width: 200px;
         overflow: hidden;
+        left : 1300px;
+        top : 150px;
         border-radius: 21px;
 
         &:hover {
@@ -466,7 +469,7 @@ a {
     &:after {
         content: '';
         height: 1px;
-        bottom: -4px;
+        bottom: -12px;
         position: absolute;
         left: 5%;
         right: 95%;
