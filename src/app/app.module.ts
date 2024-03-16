@@ -8,12 +8,14 @@ import { WelComePageComponent } from './wel-come-page/wel-come-page.component';
 import { SinupAndLoginPageComponent } from './sinup-and-login-page/sinup-and-login-page.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { WinerListComponent } from './winer-list/winer-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelComePageComponent,
-    SinupAndLoginPageComponent
+    SinupAndLoginPageComponent,
+    WinerListComponent
   ],
   imports: [
     BrowserModule,

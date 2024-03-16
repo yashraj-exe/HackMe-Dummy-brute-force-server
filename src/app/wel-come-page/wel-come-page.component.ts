@@ -25,7 +25,7 @@ export class WelComePageComponent implements OnInit {
   ngOnInit(): void {
     if (this.getToken !== null && this.getToken !== undefined && this.getToken !== "") {
       this.background();
-      this.conten();
+      // this.conten();
       this.getItemSub = this.authService?.get('user/winner').subscribe((res: any) => {
         console.log(res);
         if (res?.status === 'SUCCESS') {

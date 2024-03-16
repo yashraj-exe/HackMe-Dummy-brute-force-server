@@ -89,7 +89,7 @@ export class SinupAndLoginPageComponent implements OnInit {
       }
     }
 
-    setInterval(draw, 20);
+    setInterval(draw, 50);
 
     window.addEventListener('resize', () => location.reload());
   }
@@ -97,6 +97,7 @@ export class SinupAndLoginPageComponent implements OnInit {
   emailRegex: any = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   phoneRegex: any = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
+  message: string = "";
   validateSignupForm = (value: any) => {
     console.log('====================================');
     console.log(value);
@@ -115,6 +116,12 @@ export class SinupAndLoginPageComponent implements OnInit {
       console.log(res);
       if (res?.status === 'SUCCESS') {
         this.isLogin();
+        this.myFunction("success");
+        this.message = res?.message;
+      }
+      else {
+        this.myFunction("error");
+        this.message = res?.message;
       }
     });
   }
@@ -125,7 +132,14 @@ export class SinupAndLoginPageComponent implements OnInit {
       console.log(res);
       if (res?.status === 'SUCCESS') {
         sessionStorage.setItem('token', res?.token);
-        this.router.navigateByUrl(`wel-come/congratulation/${res?.message}`)
+        this.myFunction("success");
+        this.message = res?.message;
+        setTimeout(() => {
+          this.router.navigateByUrl(`wel-come/congratulation/${res?.message}`);
+        }, 5000);
+      } else {
+        this.myFunction("error");
+        this.message = res?.message;
       }
     });
   }
@@ -137,5 +151,18 @@ export class SinupAndLoginPageComponent implements OnInit {
     if (this.getItemSub) {
       this.getItemSub.unsubscribe();
     }
+  }
+
+  myFunction(status: string) {
+    const x: any = document.querySelector("#snackbar")?.classList;
+    // x.className = "show";
+    console.log(x);
+    
+    x.add("show", status);
+    setTimeout(() => { x.remove("show", status); }, 4000);
+  }
+
+  getLeaderBoard(){
+    this.router.navigateByUrl(`winer/all-winers-list`);
   }
 }

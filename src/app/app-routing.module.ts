@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WelComePageComponent } from './wel-come-page/wel-come-page.component';
 import { SinupAndLoginPageComponent } from './sinup-and-login-page/sinup-and-login-page.component';
+import { WinerListComponent } from './winer-list/winer-list.component';
 const routes: Routes = [
   {
     path: '',
@@ -25,6 +26,16 @@ const routes: Routes = [
         path: 'congratulation/:name',
         component: WelComePageComponent,
         data: { title: 'wel-come', breadcrumb: 'wel-come', state: 'wel-come' }
+      },
+    ]
+  },
+  {
+    path: 'winer',
+    children: [
+      {
+        path: 'all-winers-list',
+        component: WinerListComponent,
+        data: { title: 'all-winers-list', breadcrumb: 'all-winers-list', state: 'all-winers-list' }
       },
     ]
   }
